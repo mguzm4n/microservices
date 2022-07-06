@@ -16,14 +16,18 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-              allowedOrigins: "*"
-              allowedMethods: "*"
-              allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       discovery:
         locator:
           enabled: true
       routes:
         - id: product-service
           uri: lb://product-service
-          predicates: 
+          predicates:
             - Path=/product/**
+        - id: calculate-new-product-prices-service
+          uri: lb://calculate-new-product-prices-service
+          predicates:
+            - Path=/new_product_prices/**
